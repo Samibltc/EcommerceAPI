@@ -1,1 +1,23 @@
 .vs/
+*.user
+*.suo
+*.rsuser
+
+**/bin/
+**/obj/
+**/out/
+**/TestResults/
+
+.idea/
+.vscode/
+
+*.nupkg
+packages/
+.nuget/
+
+*.log
+
+# Keep EF Migrations tracked
+# (No ignore rule for Migrations/**)
+
+**/appsettings.Development.json
