@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EcommerceAPI.Core\EcommerceAPI.Core.csproj" />
+    <ProjectReference Include="..\EcommerceAPI.DataAccess\EcommerceAPI.DataAccess.csproj" />
+    <ProjectReference Include="..\EcommerceAPI.Entities\EcommerceAPI.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Behaviors\Caching\" />
+    <Folder Include="Behaviors\Logging\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.1.0" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
+  </ItemGroup>
+
+</Project>
