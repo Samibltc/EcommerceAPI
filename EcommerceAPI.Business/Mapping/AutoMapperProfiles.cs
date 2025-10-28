@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EcommerceAPI.Core.DTOs.Carts;
+using EcommerceAPI.Core.DTOs.Common;
 using EcommerceAPI.Core.DTOs.Customers;
 using EcommerceAPI.Core.DTOs.Products;
 using EcommerceAPI.Entities;
@@ -19,6 +20,9 @@ public class AutoMapperProfiles : Profile
         CreateMap<Customer, CustomerDto>();
         CreateMap<CreateCustomerRequest, Customer>();
         CreateMap<UpdateCustomerRequest, Customer>();
+
+        // Address (entity <-> dto)
+        CreateMap<Entities.ValueObjects.Address, AddressDto>().ReverseMap();
 
         // Cart
         CreateMap<CartItem, CartItemDto>()

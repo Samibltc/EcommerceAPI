@@ -10,17 +10,14 @@ public static class BusinessServiceRegistration
 {
     public static IServiceCollection AddBusinessServices(this IServiceCollection services)
     {
-        // AutoMapper (config-action overload for broader compatibility)
-        services.AddAutoMapper(cfg =>
-        {
-            // optional global config
-            cfg.AllowNullCollections = true;
-        }, typeof(AutoMapperProfiles).Assembly);
+        // AutoMapper
+        services.AddAutoMapper(cfg => { cfg.AllowNullCollections = true; }, typeof(AutoMapperProfiles).Assembly);
 
         // Services
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<ICustomerService, CustomerService>();
         services.AddScoped<ICartService, CartService>();
+        services.AddScoped<IAccountService, AccountService>();
 
         return services;
     }

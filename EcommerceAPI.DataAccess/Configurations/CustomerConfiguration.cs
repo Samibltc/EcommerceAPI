@@ -31,5 +31,16 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         builder.HasIndex(c => c.Email).IsUnique();
 
         builder.Property(c => c.CreatedAt).IsRequired();
+
+        // Owned single address (columns inline on Customers)
+        builder.OwnsOne(c => c.Address, nav =>
+        {
+            nav.Property(a => a.AddressLine1).HasMaxLength(200).HasColumnName("AddressLine1");
+            nav.Property(a => a.AddressLine2).HasMaxLength(200).HasColumnName("AddressLine2");
+            nav.Property(a => a.City).HasMaxLength(100).HasColumnName("City");
+            nav.Property(a => a.StateOrRegion).HasMaxLength(100).HasColumnName("StateOrRegion");
+            nav.Property(a => a.PostalCode).HasMaxLength(20).HasColumnName("PostalCode");
+            nav.Property(a => a.Country).HasMaxLength(100).HasColumnName("Country");
+        });
     }
 }

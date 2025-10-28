@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using EcommerceAPI.DataAccess.Identity;
 using EcommerceAPI.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceAPI.DataAccess.Context;
 
-public class ECommerceDbContext : DbContext
+public class ECommerceDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
 {
     public ECommerceDbContext(DbContextOptions<ECommerceDbContext> options)
         : base(options)
@@ -22,7 +21,15 @@ public class ECommerceDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ECommerceDbContext).Assembly);
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ECommerceDbContext).Assembly);
+
+        // AppUser 1:1 Customer
+        modelBuilder.Entity<AppUser>()
+            .HasOne(u => u.Customer)
+            .WithOne()
+            .HasForeignKey<AppUser>(u => u.CustomerId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

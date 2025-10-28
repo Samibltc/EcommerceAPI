@@ -23,25 +23,11 @@ public class CustomersController : ControllerBase
         return dto is null ? NotFound() : Ok(dto);
     }
 
-    [HttpPost]
-    public async Task<ActionResult<Guid>> Create([FromBody] CreateCustomerRequest request, CancellationToken ct)
-    {
-        var id = await _service.CreateAsync(request, ct);
-        return CreatedAtAction(nameof(GetById), new { id }, id);
-    }
-
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCustomerRequest request, CancellationToken ct)
     {
         if (id != request.Id) return BadRequest("Mismatched id.");
         await _service.UpdateAsync(request, ct);
-        return NoContent();
-    }
-
-    [HttpDelete("{id:guid}")]
-    public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
-    {
-        await _service.DeleteAsync(id, ct);
         return NoContent();
     }
 }
