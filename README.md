@@ -47,7 +47,7 @@ Katmanlı, modüler bir e‑ticaret API’si. Özellikler: Ürünler, Müşteril
 1) Repoyu klonla
 ```
 git clone https://github.com/Samibltc/EcommerceAPI.git
-cd EcommerceAPI-Solution   
+cd EcommerceAPI  
 ```
 2) Restore + DB şema kurulumu
 ```
@@ -74,7 +74,7 @@ Not: Bu repo seed data içermez. Boş şema ile başlar.
 1) Kayıt (Account)
 - POST `/api/accounts/register`
 - Dönüş: `userId` (Identity) ve `customerId` (Domain) içerir.
-
+- UserId ≠ CustomerId
 2) E‑posta Onayı
 - GET `/api/accounts/confirm-email?userId=<UserId>&token=<Token>`
 - Token loglarda “EmailConfirm URL:” satırında plain-text olarak da yazılır.
